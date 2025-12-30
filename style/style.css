@@ -39,8 +39,8 @@ main{ background-color: #efefef; display: flex; align-items: center; justify-con
 main .main-section{ width: 100%; max-width: 400px; min-height: 100vh; }
 main .main-section .title{ font-weight: 700; text-align: center; font-size: 30px; margin: 20px 0; }
 main .main-section img{ max-width: 100%; }
-main .result-div{ margin-top: 20px; display: flex; gap: 5px; }
-main .result-div .ipt{ flex-grow: 1; padding: 10px; border: 1px solid #afafaf;  }
+main .result-div{ justify-content: center; margin-top: 20px; display: flex; gap: 5px; }
+main .result-div .ipt{ width: calc(100% - 85px); padding: 10px; border: 1px solid #afafaf;  }
 main .result-div .submit-btn{ cursor: pointer; flex-shrink: 0; padding: 5px 10px; border: none; background-color: #222; color: #fff; }
 main .result-box{ margin-top: 20px; display: none; }
 main .result-box.show{ display: block; }
