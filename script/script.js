@@ -2,18 +2,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector('.submit-btn');
   const input = document.querySelector('.ipt');
 
+  let isComposing = false;
+
+  input.addEventListener('compositionstart', () => {
+    isComposing = true;
+  });
+
+  input.addEventListener('compositionend', () => {
+    isComposing = false;
+  });
+
   btn.addEventListener('click', () => {
+    if (isComposing) return; // 한글 조합 중이면 무시
+
     const answer = "A9F!Q2@KR#7MX$4ZP8";
 
-    // 공백 제거 + 대소문자 통일 + 이상한 문자 제거
     const userValue = input.value
       .trim()
       .replace(/\s/g, '')
       .toUpperCase();
 
-    const correctValue = answer.toUpperCase();
-
-    if (userValue === correctValue) {
+    if (userValue === answer) {
       $('main .result-box').addClass('show');
       $('main .failure-box').removeClass('show');
     } else {
