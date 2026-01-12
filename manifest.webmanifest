@@ -1,7 +1,7 @@
 {
   "name": "정답확인APP",
-  "short_name": "hint-check",
-  "description": "hint-check",
+  "short_name": "정답확인APP",
+  "description": "정답확인APP",
   "start_url": "/hint-check/",
   "display": "standalone",
   "background_color": "#fff",
