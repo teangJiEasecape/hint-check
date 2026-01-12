@@ -1,34 +1,34 @@
 {
-  "name": "B-END",
-  "short_name": "B-END",
-  "description": "B-END",
-  "start_url": "/b-end/",
+  "name": "정답확인기",
+  "short_name": "hint-check",
+  "description": "hint-check",
+  "start_url": "/hint-check/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "/b-end/img/icon.png",
+      "src": "/hint-check/img/icon.png",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src": "/b-end/img/icon.png",
+      "src": "/hint-check/img/icon.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "/b-end/img/icon.png",
+      "src": "/hint-check/img/icon.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "/b-end/img/icon.png",
+      "src": "/hint-check/img/icon.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "/b-end/img/icon.png",
+      "src": "/hint-check/img/icon.png",
       "sizes": "168x168",
       "type": "image/png"
     },

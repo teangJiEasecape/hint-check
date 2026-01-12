@@ -1,8 +1,8 @@
 {
-  "name": "B-END",
-  "short_name": "B-END",
-  "description": "B-END",
-  "start_url": "/b-end/",
+  "name": "정답확인기",
+  "short_name": "hint-check",
+  "description": "hint-check",
+  "start_url": "/hint-check/",
   "display": "standalone",
   "background_color": "#fff",
   "icons": [

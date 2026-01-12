@@ -3,37 +3,109 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, user-scalable=no">
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!--스타일-->
+
+        <!-- 스타일 -->
         <link rel="stylesheet" href="./style/style.css">
         <link rel="stylesheet" href="./style/font.css">
-        <!--스크립트-->
-        <script type="text/javascript" src="./script/script.js"></script>
-        <!--앱등록-->
-        <link rel="manifest" href="/b-end/manifest.json" />
-        <link rel="manifest" href="/b-end/manifest.webmanifest" />
+
+        <!-- 엑셀 라이브러리 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+        <!-- 앱 등록 -->
+        <link rel="manifest" href="/hint-check/manifest.json" />
         <meta name="theme-color" content="#000000" />
     </head>
+
     <body>
-       <main>
-           <section class="main-section">
+        <main>
+            <section class="main-section">
 
-                <div class="title">B-END</div>
-                
-                <div class="result-div">
-                    <input type="text" inputmode="numeric" pattern="[0-9]*" class="ipt" placeholder="정답을 입력해주세요."/>
-                    <button type="button" class="submit-btn">정답확인</button>
+                <div class="title">정답 확인기</div>
+
+                <div class="answer-div">
+                    <input type="text" id="hintCode" placeholder="힌트코드 입력">
+                    <input type="text" id="userAnswer" placeholder="정답 입력">
+                    <button type="button" onclick="checkAnswer()">확인</button>
                 </div>
 
-                <div class="result-box">
-                    <video src="./img/hint.mp4" autoplay loop></video>
-                </div>
+                <!-- 관리자용 엑셀 업로드 -->
+                <input type="file" id="excelFile" />
 
-                <div class="failure-box">
-                    틀렸어요! 다시 시도해보세요 🥲
-                </div>
+            </section>
 
-           </section>
-       </main>
+            <script>
+                /* 엑셀 업로드 → 힌트코드-정답 저장 */
+                document.getElementById("excelFile").addEventListener("change", function (e) {
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
+
+                    reader.onload = function (event) {
+                        const data = new Uint8Array(event.target.result);
+                        const workbook = XLSX.read(data, { type: "array" });
+                        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                        const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+                        const answerMap = {};
+
+                        rows.forEach((row, index) => {
+                            if (index === 0) return; // 헤더 제외
+                            if (row[0] && row[1]) {
+                                const answer = row[1].toString()
+                                    .replace(/\s/g, "")
+                                    .replace(/[\/\-_]/g, "")
+                                    .trim();
+                                answerMap[row[0].toString().trim()] = answer;
+                            }
+                        });
+
+                        localStorage.setItem("answerMap", JSON.stringify(answerMap));
+                        alert("엑셀 정답이 저장되었습니다!");
+                    };
+
+                    reader.readAsArrayBuffer(file);
+                });
+
+                /* 정답 판별 */
+                function checkAnswer() {
+                    const hintCode = document.getElementById("hintCode").value.trim();
+                    const userAnswer = document
+                        .getElementById("userAnswer")
+                        .value
+                        .replace(/\s/g, "")
+                        .replace(/[\/\-_]/g, "")
+                        .trim();
+
+                    /* ✅ 관리자 모드 진입 */
+                    if (hintCode === "admin" && userAnswer === "9132") {
+                        document.getElementById("excelFile").style.display = "block";
+                        alert("🔓 관리자 모드 활성화");
+                        return;
+                    }
+
+                    const answerMap = JSON.parse(localStorage.getItem("answerMap"));
+
+                    if (!answerMap) {
+                        alert("엑셀 파일을 먼저 업로드하세요!");
+                        return;
+                    }
+
+                    if (!answerMap[hintCode]) {
+                        alert("🙅‍♀️오답입니다");
+                        return;
+                    }
+
+                    const correctAnswer = answerMap[hintCode];
+
+                    if (correctAnswer === userAnswer) {
+                        alert("🙆‍♀️정답입니다");
+                    } else {
+                        alert("🙅‍♀️오답입니다");
+                    }
+                }
+
+            </script>
+        </main>
     </body>
 </html>

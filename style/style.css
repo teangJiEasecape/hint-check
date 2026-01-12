@@ -48,3 +48,11 @@ main .failure-box{ margin-top: 20px; text-align: center; color: rgb(185, 0, 0); 
 main .failure-box.show{ display: block; }
 
 main .result-box video{ max-width: 100%; }
+
+
+#excelFile{ margin-top: 40px; display: none; }
+
+
+.answer-div input{ padding: 10px; border: 1px solid #efefef; width:100%; }
+.answer-div input + input{ margin-top: 10px; }
+.answer-div button{ margin-top: 10px; padding: 10px; border: 1px solid #efefef; width:100%; background-color: #222; color: #fff; cursor: pointer; }
