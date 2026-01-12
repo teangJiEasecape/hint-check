@@ -1,5 +1,5 @@
 {
-  "name": "정답확인기",
+  "name": "정답확인APP",
   "short_name": "hint-check",
   "description": "hint-check",
   "start_url": "/hint-check/",
