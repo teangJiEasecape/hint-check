@@ -30,6 +30,17 @@
                     <button type="button" onclick="checkAnswer()">확인</button>
                 </div>
 
+                <div class="lock">
+                    <div style="position: relative; display: inline-block;">
+                        <img src="./img/lock.png" alt="lock" style="display: block; width: 100%; height: auto;">
+                        <!-- Layered directional buttons -->
+                        <button type="button" value="위" style="position: absolute; top: 40%; left: 48%; transform: translateX(-50%); z-index:1; padding: 4px 10px;" aria-label="Up" id="btn-up" onclick="document.getElementById('userAnswer').value += this.value;">▲</button>
+                        <button type="button" value="아" style="position: absolute; bottom: 8%; left: 47%; transform: translateX(-50%); z-index:1; padding: 4px 10px;" aria-label="Down" id="btn-down" onclick="document.getElementById('userAnswer').value += this.value;">▼</button>
+                        <button type="button" value="왼" style="position: absolute; top: 63%; left: 17%; transform: translateY(-50%); z-index:1; padding: 4px 10px;" aria-label="Left" id="btn-left" onclick="document.getElementById('userAnswer').value += this.value;">◀</button>
+                        <button type="button" value="오" style="position: absolute; top: 67%; right: 24%; transform: translateY(-50%); z-index:1; padding: 4px 10px;" aria-label="Right" id="btn-right" onclick="document.getElementById('userAnswer').value += this.value;">▶</button>
+                    </div>
+                </div>
+
                 <!-- 관리자용 엑셀 업로드 -->
                 <input type="file" id="excelFile" />
 

@@ -55,4 +55,5 @@ main .result-box video{ max-width: 100%; }
 
 .answer-div input{ padding: 10px; border: 1px solid #efefef; width:100%; }
 .answer-div input + input{ margin-top: 10px; }
-.answer-div button{ margin-top: 10px; padding: 10px; border: 1px solid #efefef; width:100%; background-color: #222; color: #fff; cursor: pointer; }
+.answer-div button{ margin-top: 10px; padding: 10px; border: 1px solid #efefef; width:100%; background-color: #00862f; color: #fff; cursor: pointer; }
+.lock button{ background: transparent; border: none; color: transparent; cursor: pointer; }
